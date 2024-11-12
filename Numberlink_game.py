@@ -5,7 +5,7 @@ import random as rand
 import math
 
 #Root number of nodes in game
-size = 10
+size = 11
 
 
 def BFS_path(graph, dot_1):
@@ -22,7 +22,9 @@ def BFS_path(graph, dot_1):
         path = queue.popleft()
         vector = path[-1]
 
-        for adj_node in graph[vector]:
+        more_nodes = graph[vector]
+        rand.shuffle(more_nodes)
+        for adj_node in more_nodes:
             if adj_node not in E:
                 new_path = list(path)
                 new_path.append(adj_node)
@@ -200,8 +202,8 @@ while running:
         screen.fill((0,0,0))
         
         for i in range(1, size):
-            pygame.draw.line(screen, (255, 255, 255), (int(i*600/size), 0), (int(i*600/size), 600), width=int(10/size)+1)
-            pygame.draw.line(screen, (255, 255, 255), (0, int(i*600/size)), (600, int(i*600/size)), width=int(10/size)+1)
+            pygame.draw.line(screen, (255, 255, 255), (int(i*600/size), 0), (int(i*600/size), 600), width=int(5/size)+1)
+            pygame.draw.line(screen, (255, 255, 255), (0, int(i*600/size)), (600, int(i*600/size)), width=int(5/size)+1)
         
         graph_dots(game_paths, size, color_graph)
         graph_blanks(blanks, size)
